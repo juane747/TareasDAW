@@ -1,0 +1,31 @@
+@import "../../../node_modules/bootstrap/scss/bootstrap";
+
+$body-bg:#000;
+$primary:#6ced86; 
+$black:#000;
+$secondary:#c60bf5;
+$third:#D1D5FF;
+.card{
+    color:$black;
+    background-color: $primary;
+    margin-top: 20px;
+}
+.btn-info{
+    background-color: $third;;
+    color:$black;
+    --bs-btn-border-color:$third;
+    width: fit-content;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.btn{
+    background-color:$third;
+    color: $black;
+}
+.border{
+    background-color: $third;
+    color:$black;
+}
+.navbar-toggler-icon{
+background-color: #000 !important;
+}
