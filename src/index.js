@@ -3,11 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux'; // con esto indicamos a la aplicacion que use el store o proveedor de store
+import store from './store' //llamamos al store importado
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}> //como se usa
+      <App /> 
+    </Provider>
   </React.StrictMode>
 );
 
