@@ -47,7 +47,7 @@ function FormTaskAndGoal() {
       <Button variant="info" onClick={addItem}>Add Tasks</Button>  
       }
       {(option==='goals')&&
-      <Button variant='=info' onClick={addItem}>Add Goals</Button>
+      <Button variant='info' onClick={addItem}>Add Goals</Button>
       }
     
     </Form>

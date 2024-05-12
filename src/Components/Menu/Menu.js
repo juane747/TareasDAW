@@ -25,7 +25,7 @@ const changeOptionFunction=(e)=>{
         <Navbar.Collapse>
           <Nav defaultActiveKey={option}>
             <Nav.Link eventKey='tasks' onClick={changeOptionFunction}>Tasks</Nav.Link>
-            <Nav.Link eventKey='gooals'  onClick={changeOptionFunction}>Goals</Nav.Link>
+            <Nav.Link eventKey='goals'  onClick={changeOptionFunction}>Goals</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
