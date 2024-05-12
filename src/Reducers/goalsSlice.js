@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-//la nomenclatura siguiente es unica siempre debe agregarse asi.s
+//la nomenclatura siguiente es unica siempre debe agregarse asi.s Los estados creados
 export const goalsSlice =createSlice({
     name:'goals',
     initialState:{
@@ -19,4 +19,5 @@ export const goalsSlice =createSlice({
 })
 
 export const {addGoal}=goalsSlice.actions;
+
 export default goalsSlice.reducer;
