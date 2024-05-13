@@ -7,10 +7,20 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import AddingMobileButton from './Components/AddingMobileButton/AddingMobileButton';
-import { useSelector } from 'react-redux'; //Para acceder s los estados
+import { useDispatch, useSelector } from 'react-redux'; //Para acceder s los estados
+import { useEffect } from 'react'; // importamos para mostart resultados de lo almacenado en el backend
+import {
+  initAddGoal,
+  initAddTodo,
+} from './Reducers/todoSlice'
+import {
 
+} from './Reducers/optionSlice'
 function App() {
+  const todos = useSelector((state)=>state.todos.value);
+  const option = useSelector((state)=>state.option.value);
   const goals = useSelector((state)=>state.goals.value); // variable para usar selector, indicando usar goals del reducers y value
+  const dispatch = useDispatch  ();
   const tareas = [{
     name:'Terminar Proyecto PW',
     description:'Terminar todo lo asignado',
@@ -24,9 +34,51 @@ function App() {
     description:'Estudiar todo el contenidos de las 6 unidades, junto a material de apoyo y proyectos realizados en clases',
     dueDate:'18/12/2024'
   }]
+// definiendo funcion para tasks
+  function initFetch(){
+    fetch("http://localhost:3001/tasks/getTasks",{
+      method:"GET",
+      headers:{
+        "Content-Type":"application/json",
+        "Authorization":"backendproyecto"
+      }
+    }).then((response)=>{// usamos para poder trabajar con una promesa
+      return response.json(); // aca la respuesta la convertimos en json
+    }).then((response)=>{
+        response.map((tasks)=>{// recorremos con map
+          dispatch((initAddTodo(tasks)));// con esto enviamos a initAddtodo la respuesta, solo por cada elemento del arreglo
+        })
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
+
+  function initFetchGoals(){
+    fetch("http://localhost:3001/goal/getGoals",{
+      method:"GET",
+      headers:{
+        "Content-Type":"application/json",
+        "Authorization":"backendproyecto"
+      }
+    }).then((response)=>{
+      return response.json(); 
+    }).then((response)=>{
+        response.map((goals)=>{
+          dispatch((initAddGoal(goals)));
+        })
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
+  useEffect(()=>{// usa 2 parametros, el codigo y el componente
+      initFetch();// pedimos que llame a initFetch, que seria el codigo
+      initFetchGoals();
+  },[]);// el otro seria, para renderisar la pagina, un arreglo vacio
   return (  
     <div className="App">
        <Menu/>
+       {/*Todos/>}
+       <Goals/>*/}
        <Container>
       <Row>
         <Col xs={0} md={0} className='d-none d-sm-block d-sm-none d-md-block'><Formulario/></Col>

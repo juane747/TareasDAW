@@ -7,18 +7,68 @@ export const todoSlice = createSlice({
   },
   reducers: {
     addTodo: (state, action) => {
+      console.log(action.payload);
       state.value.push(action.payload);
+      fetch("http://localhost:3001/tasks/addTasks", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "backendproyecto"
+        },
+        body: JSON.stringify(action.payload)
+      }).catch((err) => {
+        console.log(err);
+      })
     },
-    initAddTodo:(state, action)=>{
+    initAddTodo: (state, action) => {
       console.log(action.payload);
       state.value.push(action.payload);
     },
-    removeTodo:(state,action)=>{
-      state.value = state.value.filter((task)=>task.id!==action.payload);
-    }
+    removeTodo: (state, action) => {
+      state.value = state.value.filter((task) => task.id !== action.payload);
+      fetch("http://localhost:3001/tasks/removeTasks" + action.payload, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "backendproyecto"
+        }
+      }).catch((err) => {
+        console.log(err);
+      })
+    },
+    addGoal: (state, action) => {
+      console.log(action.payload);
+      state.value.push(action.payload);
+      fetch("http://localhost:3001/goals/addGoals", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "backendproyecto"
+        },
+        body: JSON.stringify(action.payload)
+      }).catch((err) => {
+        console.log(err);
+      })
+    },
+    initAddGoal: (state, action) => {
+      console.log(action.payload);
+      state.value.push(action.payload);
+    },
+    removeGoal: (state, action) => {
+      state.value = state.value.filter((task) => task.id !== action.payload);
+      fetch("http://localhost:3001/goals/removeGoals" + action.payload, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "backendproyecto"
+        }
+      }).catch((err) => {
+        console.log(err);
+      })
+    },
   }
 });
 
-export const { addTodo, initAddTodo, removeTodo } = todoSlice.actions;
-export const selecTodos = (state)=>state.todos.value
+export const { addTodo, initAddTodo, removeTodo, addGoal, initAddGoal, removeGoal } = todoSlice.actions;
+export const selecTodos = (state) => state.todos.value;
 export default todoSlice.reducer;
