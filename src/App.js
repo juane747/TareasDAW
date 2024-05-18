@@ -17,7 +17,7 @@ import {
 
 } from './Reducers/optionSlice'
 function App() {
-  const todos = useSelector((state)=>state.todos.value);
+  const tasks = useSelector((state)=>state.todos.value);
   const option = useSelector((state)=>state.option.value);
   const goals = useSelector((state)=>state.goals.value); // variable para usar selector, indicando usar goals del reducers y value
   const dispatch = useDispatch  ();
@@ -90,9 +90,19 @@ function App() {
           </Row>
           <Row>
             <div className='scrolling'>
-             {goals.map((tarea,index)=>(// aca recorremos el goals en vez de un listado predefinido para imprimir en pantalla
+
+             {
+             (option==="goals")&&
+             goals.map((tarea,index)=>(// aca recorremos el goals en vez de un listado predefinido para imprimir en pantalla
                 <Item key={index} name={tarea.name} description={tarea.description} dueDate={tarea.dueDate}/>
              ))}
+             {
+            
+              option==="tasks"&&
+              tasks.map((tarea,index)=>(
+                <Item key={index} name={tarea.name} description={tarea.description} dueDate={tarea.dueDate}/>
+              ))
+             }
           </div>
         </Row>
         </Col>

@@ -12,9 +12,36 @@ export const goalsSlice =createSlice({
         ]
     },
     reducers:{
-        addGoal: (state, action)=>{
-            state.value.push(action.payload )
-        }
+        addGoal: (state, action) => {
+            console.log(action.payload);
+            state.value.push(action.payload);
+            fetch("http://localhost:3001/goals/addGoals", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": "backendproyecto"
+              },
+              body: JSON.stringify(action.payload)
+            }).catch((err) => {
+              console.log(err);
+            })
+          },
+          initAddGoal: (state, action) => {
+            console.log(action.payload);
+            state.value.push(action.payload);
+          },
+          removeGoal: (state, action) => {
+            state.value = state.value.filter((task) => task.id !== action.payload);
+            fetch("http://localhost:3001/goals/removeGoals" + action.payload, {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": "backendproyecto"
+              }
+            }).catch((err) => {
+              console.log(err);
+            })
+          },
     }
 })
 
