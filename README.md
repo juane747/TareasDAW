@@ -3,7 +3,7 @@
 ## Este proyecto esta creado con React, Bootstrap, Scss
 
 ## Instalacion directamente instalando todas las dependencias.
-1. clonar el repositorio de github
+1. clonar el repositorio de github; https://github.com/juane747/TareasDAW.git
 2. Luego hacer la instalacion de de node.js puede ser descargado de la pagina de internet, la version mas estable y reciente
 3. Intalar Bootstrap, con el siguiente comando: npm install react-bootstrap bootstrap--save
 4. Luego instalamos sass con el comando: npm install sass --save
@@ -32,4 +32,3 @@
 
 5. Para usar el contenedor, con el siguiente codigo:
     docker run -p4000:80 --name docker-react-contaniner docker-react-image:1.0 .
-    
